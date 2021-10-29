@@ -1,0 +1,63 @@
+from PyQt5 import uic, QtWidgets
+from PyQt5.QtGui import QPixmap, QBitmap
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
+import final
+import srt
+import sys
+
+choise = ()
+days = []
+i = 1
+while i != 32:
+    days.append(i)
+    i += 1
+
+marks_list = ['Ford', 'Honda', 'Hyundai', 'Kia', 'Lada (ВАЗ)', 'Mazda', 'Mercedes-Benz', 'Mitsubishi', 'Nissan',
+              'Skoda', 'Toyota', 'Volkswagen', 'Acura', 'Daihatsu', 'Datsun', 'Honda', 'Infiniti', 'Isuzu',
+              'Lexus', 'Mazda', 'Mitsubishi', 'Scion', 'Subaru', 'Suzuki', 'Toyota', 'Buick', 'Chevrolet', 'Chrysler',
+              'Dodge', 'Ford', 'GMC', 'Hummer', 'Jeep', 'Lincoln', 'Mercury', 'Oldsmobile', 'Pontiac', 'Aurus', 'ГАЗ',
+              'Москвич', 'ТагАЗ', 'УАЗ', 'Audi', 'BMW', 'Opel', 'Porsche', 'Volkswagen',
+              'Daewoo', 'Genesis',
+              'Hyundai', 'Kia', 'SsangYong', 'Alfa Romeo', 'Aston Martin', 'Bentley', 'Bugatti', 'Citroen', 'DS',
+              'Ferrari',
+              'Fiat', 'Jaguar', 'Lamborghini', 'Lancia', 'Land Rover', 'Maserati', 'Maybach', 'Mini', 'Peugeot',
+              'Ravon',
+              'Renault', 'Rolls-Royce', 'Rover', 'Saab', 'SEAT', 'Skoda', 'Smart', 'Volvo', 'ZAZ', 'Brilliance', 'BYD',
+              'Changan', 'Chery', 'DongFeng', 'FAW', 'Foton', 'GAC', 'Geely', 'Great Wall', 'Haima', 'Haval', 'JAC',
+              'Lifan', 'Luxgen', 'Zotye']
+
+monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+           'September', 'October', 'November', 'December']
+
+
+class MyFform(QtWidgets.QMainWindow, final.Ui_Form):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+        self.Form = QtWidgets.QWidget()
+
+        self.Form.show()
+
+
+class StartForm(QtWidgets.QMainWindow, srt.Ui_Form):
+    def __init__(self):
+        super().__init__()
+
+        self.setupUi(self)
+        self.fixing_button.clicked.connect(self.OnClick)
+
+    def handleButton(self):
+        self.dialog = MyFform()
+        self.dialog.show()
+
+    def OnClick(self):
+        self.w1 = MyFform()
+        self.w1.show()
+
+
+if __name__ == '__main__':
+    app = QtWidgets.QApplication(sys.argv)
+    xe = StartForm()
+    xe.show()
+    sys.exit(app.exec())
