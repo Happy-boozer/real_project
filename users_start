@@ -38,22 +38,20 @@ class DIAF(QtWidgets.QMainWindow, diagnos.Ui_Form):
         self.Form = QtWidgets.QWidget()
         self.Form.show()
         self.WH.clicked.connect(self.OnClick)
-
+        self.DTP.clicked.connect(self.OnClick)
+        self.pushButton_3.clicked.connect(self.OnClick)
 
 class MyFform(QtWidgets.QMainWindow, final.Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-
         self.Form = QtWidgets.QWidget()
-
         self.Form.show()
 
 
 class StartForm(QtWidgets.QMainWindow, srt.Ui_Form):
     def __init__(self):
         super().__init__()
-
         self.setupUi(self)
         self.fixing_button.clicked.connect(self.OnClick)
 
@@ -64,7 +62,10 @@ class StartForm(QtWidgets.QMainWindow, srt.Ui_Form):
     def OnClick(self):
         self.w1 = MyFform()
         self.w1.show()
-
+        
+    def OnClick(self):
+        self.w1 = MyFform()
+        self.w1.show()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
