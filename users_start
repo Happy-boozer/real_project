@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 import final
 import srt
 import sys
+import diagnos
 
 choise = ()
 days = []
@@ -28,6 +29,14 @@ marks_list = ['Ford', 'Honda', 'Hyundai', 'Kia', 'Lada (ВАЗ)', 'Mazda', 'Merc
 
 monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
            'September', 'October', 'November', 'December']
+           
+           
+class DIAF(QtWidgets.QMainWindow, diagnos.Ui_Form):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.Form = QtWidgets.QWidget()
+        self.Form.show()
 
 
 class MyFform(QtWidgets.QMainWindow, final.Ui_Form):
