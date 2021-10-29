@@ -32,11 +32,12 @@ monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augu
            
            
 class DIAF(QtWidgets.QMainWindow, diagnos.Ui_Form):
-    def __init__(self):
+        def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.Form = QtWidgets.QWidget()
         self.Form.show()
+        self.WH.clicked.connect(self.OnClick)
 
 
 class MyFform(QtWidgets.QMainWindow, final.Ui_Form):
