@@ -6,7 +6,12 @@ import srt
 import sys
 import diagnos
 
-choise = ()
+choise = {'Name': None,
+          'Phone_number': None,
+          'class_0': None,
+          'class_1': None,
+          'date': None,
+          'Time': None}
 days = []
 i = 1
 while i != 32:
@@ -32,14 +37,30 @@ monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augu
            
            
 class DIAF(QtWidgets.QMainWindow, diagnos.Ui_Form):
-        def __init__(self):
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.Form = QtWidgets.QWidget()
         self.Form.show()
         self.WH.clicked.connect(self.OnClick)
-        self.DTP.clicked.connect(self.OnClick)
-        self.pushButton_3.clicked.connect(self.OnClick)
+        self.DTP.clicked.connect(self.handleButton)
+        self.pushButton_3.clicked.connect(self.OutClick)
+
+    def handleButton(self):
+        self.dialog = MyFform()
+        self.dialog.show()
+        choise['class_1'] = 'DTP'
+
+
+    def OutClick(self):
+        self.windo = MyFform()
+        self.windo.show()
+        choise['class_1'] = 'suspension'
+
+    def OnClick(self):
+        self.w1 = MyFform()
+        self.w1.show()
+        choise['class_1'] = 'wheels'
 
 class MyFform(QtWidgets.QMainWindow, final.Ui_Form):
     def __init__(self):
@@ -53,19 +74,22 @@ class StartForm(QtWidgets.QMainWindow, srt.Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.fixing_button.clicked.connect(self.OnClick)
+        self.d_button.clicked.connect(self.OnClick)
+        self.fixing_button.clicked.connect(self.SOnclic)
 
     def handleButton(self):
-        self.dialog = MyFform()
+        self.dialog = DIAF()
         self.dialog.show()
 
     def OnClick(self):
+        self.w1 = DIAF()
+        self.w1.show()
+        choise['class_0'] = 'Fixing'
+
+    def SOnclic(self):
         self.w1 = MyFform()
         self.w1.show()
-        
-    def OnClick(self):
-        self.w1 = MyFform()
-        self.w1.show()
+        choise['class_0'] = 'Diagnostic'
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
