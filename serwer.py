@@ -57,7 +57,16 @@ i = 1
 while i != 32:
     days.append(i)
     i += 1
-special_days = {}
+    
+for k in record['YEAR']:
+    for j in range(1, len(record['YEAR'][k]) + 1):
+        special_days = {}
+        for i in days:
+            for l in range(monthrange(k, j)[0], monthrange(k, j)[1]):
+                if i == l:
+                    if date(k, j, i).weekday() in range(0, 5):
+                        #print(special_days)
+                        #special_days[i] = {}
 #if date()
 #проверка на принадлежность к рабочим дням
 # print(days)
