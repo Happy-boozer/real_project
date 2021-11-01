@@ -65,11 +65,10 @@ for k in record['YEAR']:
             for l in range(monthrange(k, j)[0], monthrange(k, j)[1]):
                 if i == l:
                     if date(k, j, i).weekday() in range(0, 5):
-                        #print(special_days)
-                        #special_days[i] = {}
-#if date()
-#проверка на принадлежность к рабочим дням
-# print(days)
+                        special_days[i] = hours_d
+
+        record['YEAR'][k][date(k, j, l).strftime('%B')] = special_days
+
 
 
 class Fixing:
