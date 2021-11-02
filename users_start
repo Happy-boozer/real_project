@@ -35,7 +35,31 @@ marks_list = ['Ford', 'Honda', 'Hyundai', 'Kia', 'Lada (ВАЗ)', 'Mazda', 'Merc
 monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
            'September', 'October', 'November', 'December']
            
-           
+class Type(QtWidgets.QMainWindow, test.Ui_Form):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.Form = QtWidgets.QWidget()
+        self.Form.show()
+        self.body_button.clicked.connect(self.handleButton)
+        self.engine_button.clicked.connect(self.OnClick)
+        self.pushButton_3.clicked.connect(self.OutClick)
+
+    def handleButton(self):
+        self.dialog = MyFform()
+        self.dialog.show()
+        choise['class_1'] = 'BODY'
+
+    def OutClick(self):
+        self.windo = MyFform()
+        self.windo.show()
+        choise['class_1'] = 'ELECTRIC'
+
+    def OnClick(self):
+        self.w1 = MyFform()
+        self.w1.show()
+        choise['class_1'] = 'ENGINE'
+
 class DIAF(QtWidgets.QMainWindow, diagnos.Ui_Form):
     def __init__(self):
         super().__init__()
