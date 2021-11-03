@@ -90,6 +90,18 @@ class DIAF(QtWidgets.QMainWindow, diagnos.Ui_Form):
 
 class MyFform(QtWidgets.QMainWindow, final.Ui_Form):
     def __init__(self, time):
+        self.month = {'January': 'Январь',
+                      'February': 'Февраль',
+                      'March': 'Март',
+                      'April': 'Апрель',
+                      'May': 'Май',
+                      'June': 'Июнь',
+                      'July': 'Июль',
+                      'August': 'Август',
+                      'September': 'Сентябрь',
+                      'October': 'Октябрь',
+                      'November': 'Ноябрь',
+                      'December': 'Декабрь'}
         self.time = time
         super().__init__()
         self.setupUi(self)
@@ -103,6 +115,10 @@ class MyFform(QtWidgets.QMainWindow, final.Ui_Form):
         'выбор марки авто'
         for j in self.time:
             self.comboBox_5.addItem(j)
+        for k in self.month.values():
+            self.comboBox_3.addItem(k)
+        for l in days:
+            self.comboBox_2.addItem(str(l))
 
 
 class StartForm(QtWidgets.QMainWindow, srt.Ui_Form):
