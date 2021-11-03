@@ -36,7 +36,8 @@ monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augu
            'September', 'October', 'November', 'December']
            
 class Type(QtWidgets.QMainWindow, test.Ui_Form):
-    def __init__(self):
+    def __init__(self, time):
+        self.time = time
         super().__init__()
         self.setupUi(self)
         self.Form = QtWidgets.QWidget()
@@ -46,22 +47,23 @@ class Type(QtWidgets.QMainWindow, test.Ui_Form):
         self.pushButton_3.clicked.connect(self.OutClick)
 
     def handleButton(self):
-        self.dialog = MyFform()
+        self.dialog = MyFform(self.time)
         self.dialog.show()
         choise['class_1'] = 'BODY'
 
     def OutClick(self):
-        self.windo = MyFform()
+        self.windo = MyFform(self.time)
         self.windo.show()
         choise['class_1'] = 'ELECTRIC'
 
     def OnClick(self):
-        self.w1 = MyFform()
+        self.w1 = MyFform(self.time)
         self.w1.show()
         choise['class_1'] = 'ENGINE'
 
 class DIAF(QtWidgets.QMainWindow, diagnos.Ui_Form):
-    def __init__(self):
+    def __init__(self, time):
+        self.time = time
         super().__init__()
         self.setupUi(self)
         self.Form = QtWidgets.QWidget()
@@ -71,31 +73,41 @@ class DIAF(QtWidgets.QMainWindow, diagnos.Ui_Form):
         self.pushButton_3.clicked.connect(self.OutClick)
 
     def handleButton(self):
-        self.dialog = MyFform()
+        self.dialog = MyFform(self.time)
         self.dialog.show()
         choise['class_1'] = 'DTP'
 
 
     def OutClick(self):
-        self.windo = MyFform()
+        self.windo = MyFform(self.time)
         self.windo.show()
         choise['class_1'] = 'suspension'
 
     def OnClick(self):
-        self.w1 = MyFform()
+        self.w1 = MyFform(self.time)
         self.w1.show()
         choise['class_1'] = 'wheels'
 
 class MyFform(QtWidgets.QMainWindow, final.Ui_Form):
-    def __init__(self):
+    def __init__(self, time):
+        self.time = time
         super().__init__()
         self.setupUi(self)
         self.Form = QtWidgets.QWidget()
         self.Form.show()
+        self.comboBox_4.addItem('2021')
+        self.comboBox_4.addItem('2022')
+        'выбор года'
+        for i in marks_list:
+            self.comboBox.addItem(i)
+        'выбор марки авто'
+        for j in self.time:
+            self.comboBox_5.addItem(j)
 
 
 class StartForm(QtWidgets.QMainWindow, srt.Ui_Form):
     def __init__(self):
+        self.hours = ['11', '13', '15', '17'] + ['10', '12', '14', '16', '18']
         super().__init__()
         self.setupUi(self)
         self.d_button.clicked.connect(self.OnClick)
@@ -106,12 +118,20 @@ class StartForm(QtWidgets.QMainWindow, srt.Ui_Form):
         self.dialog.show()
 
     def OnClick(self):
-        self.w1 = DIAF()
+        time = []
+        for i in self.hours:
+            if int(i) % 2 == 0:
+                time.append(i)
+        self.w1 = DIAF(time)
         self.w1.show()
         choise['class_0'] = 'Fixing'
 
     def SOnclic(self):
-        self.w1 = MyFform()
+        time = []
+        for i in self.hours:
+            if int(i) % 2 != 0:
+                time.append(i)
+        self.w1 = Type(time)
         self.w1.show()
         choise['class_0'] = 'Diagnostic'
 
