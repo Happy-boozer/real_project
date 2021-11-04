@@ -162,6 +162,12 @@ class MyFform(QtWidgets.QMainWindow, final.Ui_Form):
         self.date['YEAR'] = self.comboBox_4.currentText()  # year
         self.date['DAY'] = self.comboBox_2.currentText()  # day
         self.date['MONTH'] = self.comboBox_3.currentText()  # month
+        choise['date'] = date(int(self.comboBox_4.currentText()), int(self.month[self.comboBox_3.currentText()]),
+                              int(self.comboBox_2.currentText()))
+        choise['mark'] = self.comboBox.currentText()
+        choise['Time'] = int(self.comboBox_5.currentText())
+        if choise['Phone_number'] == 'error':
+            self.label_9.setText('неправильный телефон')
 
 
 class StartForm(QtWidgets.QMainWindow, srt.Ui_Form):
