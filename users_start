@@ -151,6 +151,17 @@ class MyFform(QtWidgets.QMainWindow, final.Ui_Form):
             self.comboBox_3.addItem(k)
         for l in days:
             self.comboBox_2.addItem(str(l))
+        self.pushButton.clicked.connect(self.reaction)
+
+    def reaction(self):
+        self.date = {'YEAR': None,
+                     'MONTH': None,
+                     'DAY': None}
+        choise['Name'] = self.textBrowser.text()
+        choise['Phone_number'] = to_str(self.textBrowser_2.text())
+        self.date['YEAR'] = self.comboBox_4.currentText()  # year
+        self.date['DAY'] = self.comboBox_2.currentText()  # day
+        self.date['MONTH'] = self.comboBox_3.currentText()  # month
 
 
 class StartForm(QtWidgets.QMainWindow, srt.Ui_Form):
