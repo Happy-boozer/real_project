@@ -6,6 +6,38 @@ import srt
 import sys
 import diagnos
 
+def to_str(tel):
+    err = 'error'
+    tel = ''.join(tel.split())
+
+    if tel.find('+7') != 0 and tel.find('8') != 0:
+        return err
+    if not all(tel.split('-')):
+        return err
+    else:
+        tel = tel.replace('-', '')
+
+    start_bt = tel.find("(")
+    end_bt = tel.find(")")
+    flag1 = end_bt < start_bt
+    flag2 = not tel.count("(") == 1 or not tel.count(")") == 1
+    flag3 = not tel[start_bt + 1:end_bt].isdigit()
+    flag = flag1 or flag3 or flag2
+    if start_bt > -1:
+        if flag:
+            return err
+    elif end_bt > -1:
+        return err
+    tel = tel.replace('(', '')
+    tel = tel.replace(')', '')
+    if tel.find('8') == 0:
+        tel = '+7' + tel[1:]
+
+    if not tel[1:].isdigit() or not len(tel[1:]) == 11:
+        return err
+    else:
+        return tel
+        
 choise = {'Name': None,
           'Phone_number': None,
           'class_0': None,
