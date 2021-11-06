@@ -1,34 +1,197 @@
+import datetime
+import erw
+from PyQt5 import uic, QtWidgets, QtCore
+from PyQt5.QtGui import QPixmap, QBitmap
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from datetime import time, date
+from calendar import monthrange, month_name
 
-record = {'YEAR': {2020: {'January': None,
-                            'February': None,
-                            'March': None,
-                            'April': None,
-                            'May': None,
-                            'June': None,
-                            'July': None,
-                            'August':None,
-                            'September':None,
-                            'October':None,
-                            'November':None,
-                            'December':None,},
-                2021: {'January': None,
-                            'February':None,
-                            'March':None,
-                            'April':   None,
+'этот кусок  заполнял сам так как не смог придумать как всё сохранить так как я хочу'
+record = {'YEAR': {2021: {
+    10: {1: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         4: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         5: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         6: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         7: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         8: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         9: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         12: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         13: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         14: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         15: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         16: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         19: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         20: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         21: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         22: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         23: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         25: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         26: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         27: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         28: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         29: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'}},
+    11: {1: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         2: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         3: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         4: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         5: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         8: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         9: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         10: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         11: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         12: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         15: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         16: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         17: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         18: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         19: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         22: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         23: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         24: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         25: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         26: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         29: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'},
+         30: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+              17: 'unlocked', 18: 'unlocked'}},
+    12: {1: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         2: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'},
+         3: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+             17: 'unlocked', 18: 'unlocked'}},
+    6: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+        17: 'unlocked', 18: 'unlocked'},
+    7: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+        17: 'unlocked', 18: 'unlocked'},
+    8: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+        17: 'unlocked', 18: 'unlocked'},
+    9: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+        17: 'unlocked', 18: 'unlocked'},
+    10: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    13: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    14: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    15: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    16: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    17: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    20: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    21: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    22: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    23: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    24: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    27: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    28: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    29: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'},
+    30: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+         17: 'unlocked', 18: 'unlocked'}},
+    2022: {
+        1: {10: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            11: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            12: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            13: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            14: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            17: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            18: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            19: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            20: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            21: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            24: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            25: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            26: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            27: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            28: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'},
+            31: {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+                 17: 'unlocked', 18: 'unlocked'}},
+        'February': None,
+        'March': None,
+        'April': None,
+        'May': None,
+        'June': None,
+        'July': None,
+        'August': None,
+        'September': None,
+        'October': None,
+        'November': None,
+        'December': None
+    }}}
+# with open('base.txt', encoding='utf-8') as f:
 
-                            'May':None,
-                            'June':None,
-                            'July':None,
-                            'August':None,
-                            'September':None,
-                            'October':None,
-                            'November': None,
-                            'December': None
-                                }}}
-
-
-
+'''
+def changing(choice):
+    choise = choice
+    record['YEAR'][choise['date'][0]][choise['date'][1]][choise['date'][2]] = 'locked'
+    record.update()
 
 marks_list = ['Ford', 'Honda', 'Hyundai', 'Kia', 'Lada (ВАЗ)', 'Mazda', 'Mercedes-Benz', 'Mitsubishi', 'Nissan',
               'Renault', 'Skoda', 'Toyota', 'Volkswagen', 'Acura', 'Daihatsu', 'Datsun', 'Honda', 'Infiniti', 'Isuzu',
@@ -44,11 +207,8 @@ marks_list = ['Ford', 'Honda', 'Hyundai', 'Kia', 'Lada (ВАЗ)', 'Mazda', 'Merc
               'Changan', 'Chery', 'DongFeng', 'FAW', 'Foton', 'GAC', 'Geely', 'Great Wall', 'Haima', 'Haval', 'JAC',
               'Lifan', 'Luxgen', 'Zotye']
 
-hours_d = [time(11), time(13), time(15), time(17)]  # time for diagnostic
-
-hours_F = [time(10), time(12), time(14), time(16), time(18)]  # time for fixing
-
-weekdayes = ['monday', 'tuesday', 'wendsday', 'thursday', 'friday']  # weekdays
+hours_d = {10: 'unlocked', 11: 'unlocked', 12: 'unlocked', 13: 'unlocked', 14: 'unlocked', 15: 'unlocked',
+           17: 'unlocked', 18: 'unlocked'}  # time for everything
 
 monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
            'September', 'October', 'November', 'December']
@@ -57,7 +217,18 @@ i = 1
 while i != 32:
     days.append(i)
     i += 1
-    
+# rembo = record.copy()
+
+class Kill(QtWidgets.QMainWindow, erw.Ui_Form):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.Form = QtWidgets.QWidget()
+        self.Form.show()
+        self.d_button.clicked.connect(self.handleButton)
+    def handleButton(self):
+
+
 for k in record['YEAR']:
     for j in range(1, len(record['YEAR'][k]) + 1):
         special_days = {}
@@ -68,7 +239,19 @@ for k in record['YEAR']:
                         special_days[i] = hours_d
 
         record['YEAR'][k][date(k, j, l).strftime('%B')] = special_days
+'в данном цикле происходит заполнение записи на весь ближний диапозон' 
+'где подразумевается, что вся запись пуста'
 
+print(record)
+
+def cheking(prorramm.choise):
+    pass
+
+'''
+
+
+# проверка на принадлежность к рабочим дням
+# print(days)
 
 
 class Fixing:
@@ -103,3 +286,18 @@ class AfterDTP(Diagnostic):
 
 class suspension(Diagnostic):
     pass
+
+
+'''
+
+if __name__ == "__main__":
+    import sys
+
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = Kill()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())
+
+'''
